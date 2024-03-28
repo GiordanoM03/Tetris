@@ -11,10 +11,14 @@ Il gioco viene diviso in 3 sezioni:
 
 ### 1. Tetramini
 #### Grafica
-I tetramini vengono rapresentati sull file grrafico come degli 0 e degli 1, dove il 0 rappresenta le parti vuote e il 1 rappresenta il valore del pezzo. La scelta di avere dei valori binari è legata alla semplificazione dell'implementazione del comportamento.
-I file grafici si trovano nella cartella [Tetramini](https://github.com/GiordanoM03/Tetris) presente su GitHub.
+I tetramini vengono rapresentati sullo schermo come un insieme di 4 "[]" che danno la forma del tetramino, mentre sui file utilizzati per rappresentare le forme viene usato il binario, dove 1 rappresenta il "[]", mentre 0 rappresenta l'assenza dell'elemento. Il perché della scelta viene spiegato nella sezione "**Implementazione**"
+I file grafici si trovano nella cartella [Tetramini](https://github.com/GiordanoM03/Tetris) presente su GitHub.  
+I tetramini avranno anche un colore, per evitare di confonderli quando saranno tutti impilati.
 
 #### Implementazione
+La prima scelta d'implementazione legata ai tetramini è quella di utilizzare dei file contenenti i "disegni" dei tetramini in formato binario, cioè avere lo 0 che indica il vuoto e 1 che indica la presenta del tetramino. Questa scelta nasce dalla necessità di trovare un modo per controllare il contatto tra i vari blocchi nella matrice di gioco.  
+L'altra scelta implementativa è legata alla grafica del gioco, dove, per avere un gioco più interessante graficamente, andiamo a cambiare l'elemento grafico. Quello che facciamo e andare a cambiare il valore 1 con la stringa "[]", così da avere dei tetramini graficamente "belli".
+
 
 ### 2. Schermata di Gioco
 #### Grafica
