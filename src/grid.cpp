@@ -29,31 +29,31 @@ int Grid::get(int row, int col) const {
 bool Grid::isrowfull(int riga) const {
     for (int colonna = 0; colonna < colonne; ++colonna) {
         if (grid[riga][colonna] == 0) {
-            return false; // If any cell in the row is empty, return false
+            return false; 
         }
     }
-    return true; // If all cells in the row are filled, return true
+    return true; 
 }
 
 void Grid::removerow(int riga) {
     for (int r = riga; r > 0; --r) {
         for (int colonna = 0; colonna < colonne; ++colonna) {
-            grid[r][colonna] = grid[r - 1][colonna]; // Shift rows down by one
+            grid[r][colonna] = grid[r - 1][colonna]; 
         }
     }
     for (int colonna = 0; colonna < colonne; ++colonna) {
-        grid[0][colonna] = 0; // Clear top row
+        grid[0][colonna] = 0; 
     }
 }
 
 void Grid::shiftdown(int riga) {
     for (int r = riga; r > 0; --r) {
         for (int colonna = 0; colonna < colonne; ++colonna) {
-            grid[r][colonna] = grid[r - 1][colonna]; // Shift rows down by one
+            grid[r][colonna] = grid[r - 1][colonna]; 
         }
     }
     for (int colonna = 0; colonna < colonne; ++colonna) {
-        grid[0][colonna] = 0; // Clear top row
+        grid[0][colonna] = 0; 
     }
 }
 
