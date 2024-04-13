@@ -22,9 +22,13 @@ public:
     Z = 7,
 };
 
-    int random();   //genera un numero da 0 a 3 per determinare con che rotazione buttare il tetramino iniziale
-
-    
+    int random(); 
+    int randomother();  //genera un numero da 0 a 3 per determinare con che rotazione buttare il tetramino iniziale
+    //le funzioni sotto servono a ruorate, in input c'è ora una matrice 4x4 generica, poi dovra essere messa quella che viene scelta randomly
+    void rotateRight(int tetramino[4][4]);
+    void rightarrow(int tetramino[4][4]);
+    void rotateLeft(int tetramino[4][4]);
+    void leftarrow(int tetramino[4][4]);
 
 
 };
