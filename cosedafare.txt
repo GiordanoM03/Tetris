@@ -3,5 +3,6 @@ una che spinga giu i tetramini
 una che sceglie il tetramino iniziale
 funzione dei tetramini che si devono bloccare quando ce sotto qualcosa
 parte grafica generale con la grid + menu iniziale
+gameover
 
 non me ne vengono in mente altre
