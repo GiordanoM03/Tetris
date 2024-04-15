@@ -4,6 +4,7 @@ una che sceglie il tetramino iniziale
 funzione dei tetramini che si devono bloccare quando ce sotto qualcosa / non farli andare a sx o dx se c'è il muro del campo
 parte grafica generale con la grid + menu iniziale (+ elenco comandi per gioco, punti, ...)
 gameover
+funzione che faccia scendere i tetramini dopo che una riga è stata eliminata
 
 da vedere come mettere il campo di gioco centrale nello schermo e che il tetramino che viene buttato sia centrale nel campo. 
 
