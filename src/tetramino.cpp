@@ -52,55 +52,68 @@ const int Tetromino::Z[4][4] = {
     {0, 0, 0, 0}
 };
 
-int Tetromino::random() {
+int Tetromino::randomother() {
     int N = rand() % 4;
     return N;
 }
 
 void Tetromino::rotateRight(int tetramino[4][4]) {
-    int temp[4][4];
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            temp[i][j] = tetramino[i][j];
+    int key = _getch();
+    if (key == 72) { 
+        int temp[4][4];
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                temp[i][j] = tetramino[i][j];
+            }
         }
-    }
- 
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            tetramino[j][3 - i] = temp[i][j];
+     
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                tetramino[j][3 - i] = temp[i][j];
+            }
         }
     }
 }
 
-void Tetromino::rightarrow(int tetramino[4][4]) {
-    int key = getch(); 
-    if (key == 77) {
-        rotateRight(tetramino);
-    }
-}
-
-void rotateLeft(int tetramino[4][4]) {
-    int temp[4][4];
+void Tetromino::moveLeft(int tetramino[4][4]) {
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
-            temp[i][j] = tetramino[i][j];
+            if (tetramino[i][j] != 0 && (j == 0 || tetramino[i][j - 1] != 0)) {
+                return;
+            }
         }
     }
     
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
-            tetramino[3 - j][i] = temp[i][j];
+            if (tetramino[i][j] != 0) {
+                tetramino[i][j] = 0;
+                tetramino[i][j - 1] = 1;
+            }
         }
     }
 }
 
-void leftarrow(int tetramino[4][4]) {
-    int key = _getch(); 
-
-    if (key == 75) {
-        rotateLeft(tetramino);
+void Tetromino::moveRight(int tetramino[4][4]) {
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            if (tetramino[i][j] != 0 && (j == 3 || tetramino[i][j + 1] != 0)) {
+                return;
+            }
+        }
+    }
+    
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 3; j >= 0; --j) {
+            if (tetramino[i][j] != 0) {
+                tetramino[i][j] = 0;
+                tetramino[i][j + 1] = 1;
+            }
+        }
     }
 }
+
+
 
 
 
