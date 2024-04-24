@@ -28,6 +28,7 @@ public:
     void rotateRight(int tetramino[4][4]);
     void moveLeft(int tetramino[4][4]);
     void moveRight(int tetramino[4][4]);
+ 
 
 
 };
