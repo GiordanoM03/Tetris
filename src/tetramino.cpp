@@ -75,6 +75,9 @@ void Tetromino::rotateRight(int tetramino[4][4]) {
     }
 }
 
+
+//nella funzione di gioco si implementerà mettendo anche i tasti per cui valgono le funzioni sottostanti
+
 void Tetromino::moveLeft(int tetramino[4][4]) {
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
