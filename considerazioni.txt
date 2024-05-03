@@ -1,0 +1,7 @@
+CONSIDERAZIONI
+Su questo documento possiamo inserire tutte le considerazioni che ci vengono in mente quando guardiamo il lavono dell'altro
+
+Inizio dicendo che non ho scritto una riga di codice (ero un po' occuparo)
+
+Guardando i codici che hai scritto, ho notato che per quanto riguarda la gestione del tetramino lo hai fatto in un solo file. Probabilmente quello che i prof preferirebbero, per quanto sia "lavoro in più" è quello di utilizzare una classe per ogni tetramino, classe che ha come padre la classe tetramino.
+Devo poi capire bene come funziona la funzione della rotazione.
