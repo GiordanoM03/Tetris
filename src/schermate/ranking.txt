@@ -1,0 +1,22 @@
+                    CLASSIFICA
+1. Mario -> Punti: 1000 Livello: 10 Righe: 10 Tempo: 5'30''
+2. Mario -> Punti: 1000 Livello: 10 Righe: 10 Tempo: 5'30''
+3. Mario -> Punti: 1000 Livello: 10 Righe: 10 Tempo: 5'30''
+4. Mario -> Punti: 1000 Livello: 10 Righe: 10 Tempo: 5'30''
+5. Mario -> Punti: 1000 Livello: 10 Righe: 10 Tempo: 5'30''
+
+
+mario,1000,10,10,5'30''
+
+typedef struct rank {
+    string nome;
+    int punti;
+    int livello;
+    int righe;
+    string tempo;
+    rank* next;
+}
+
+funzione lettura file
+organizzare classe schermata e file
+funzioni grafiche per la schermata di gioco3
