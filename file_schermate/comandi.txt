@@ -1,0 +1,6 @@
+                COMANDI
+* KEY LEFT: move tetramino to the left
+* KEY RIGHT: move tetramino to the right
+* KEY UP: rotate tetramino 90° clockwise
+* KEY DOWN: rotate tetramino 90° counterclock
+* SPACE BAR: drop the tetramino
