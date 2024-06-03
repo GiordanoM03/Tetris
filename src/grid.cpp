@@ -83,3 +83,11 @@ void Grid::print() const {
 }
 
 
+bool Grid::gameOver(int grid[21][10]) {
+    for (int col = 0; col < 10; ++col) {
+        if (grid[20][col] != 0) {
+            return true;
+        }
+    }
+    return false;
+}

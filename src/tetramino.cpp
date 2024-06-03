@@ -3,54 +3,44 @@
 #include <iostream>
 #include <conio.h>
 
-const int Tetromino::I[4][4] = {
-    {0, 0, 0, 0},
-    {1, 1, 1, 1},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}
-};
+#define TETRAMINI_DIR "Tetramini/"
 
-const int Tetromino::J[4][4] = {
-    {1, 0, 0, 0},
-    {1, 1, 1, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}
-};
+Tetromino::Tetromino(TetrominoID id) {
+    loadTetromino(id);
+}
 
-const int Tetromino::L[4][4] = {
-    {0, 0, 1, 0},
-    {1, 1, 1, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}
-};
+void Tetromino::loadTetromino(TetrominoID id) {
+    const char* filename;
+    switch (id) {
+        case I: filename = TETRAMINI_DIR "t1.txt"; break;
+        case J: filename = TETRAMINI_DIR "t2.txt"; break;
+        case L: filename = TETRAMINI_DIR "t3.txt"; break;
+        case O: filename = TETRAMINI_DIR "t4.txt"; break;
+        case S: filename = TETRAMINI_DIR "t5.txt"; break;
+        case T: filename = TETRAMINI_DIR "t6.txt"; break;
+        case Z: filename = TETRAMINI_DIR "t7.txt"; break;
+        default: return;  
+    }
 
-const int Tetromino::O[4][4] = {
-    {0, 0, 0, 0},
-    {0, 1, 1, 0},
-    {0, 1, 1, 0},
-    {0, 0, 0, 0}
-};
+    FILE* file = fopen(filename, "r");
+    if (!file) {
+        return;  
+    }
 
-const int Tetromino::S[4][4] = {
-    {0, 1, 1, 0},
-    {1, 1, 0, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}
-};
-
-const int Tetromino::T[4][4] = {
-    {0, 1, 0, 0},
-    {1, 1, 1, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}
-};
-
-const int Tetromino::Z[4][4] = {
-    {1, 1, 0, 0},
-    {0, 1, 1, 0},
-    {0, 0, 0, 0},
-    {0, 0, 0, 0}
-};
+    char line[5];  
+    int row = 0;
+    while (fgets(line, sizeof(line), file) && row < 4) {
+        for (int col = 0; col < 4; ++col) {
+            if (line[col] == '0' || line[col] == '1') {
+                tetromino[row][col] = line[col] - '0';
+            } else {
+                tetromino[row][col] = 0;
+            }
+        }
+        ++row;
+    }
+    fclose(file);
+}
 
 int Tetromino::randomother() {
     int N = rand() % 4;
@@ -74,9 +64,6 @@ void Tetromino::rotateRight(int tetramino[4][4]) {
         }
     }
 }
-
-
-//nella funzione di gioco si implementerà mettendo anche i tasti per cui valgono le funzioni sottostanti
 
 void Tetromino::moveLeft(int tetramino[4][4]) {
     for (int i = 0; i < 4; ++i) {
@@ -117,8 +104,21 @@ void Tetromino::moveRight(int tetramino[4][4]) {
 }
 
 
+Tetromino Tetromino::getRandomTetromino() {
+    srand(time(0));
+    TetrominoID randomID = static_cast<TetrominoID>(rand() % 7); 
+    Tetromino tetromino(randomID);
+    tetromino.applyRandomRotations();
+    return tetromino;
+}
 
-
+void Tetromino::applyRandomRotations() {
+    srand(time(0));
+    int rotations = rand() % 4 + 1; 
+    for (int i = 0; i < rotations; ++i) {
+        rotateRight(tetromino);
+    }
+}
 
 
 

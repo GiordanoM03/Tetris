@@ -3,33 +3,29 @@
 
 class Tetromino {
 private:
-    static const int I[4][4];
-    static const int J[4][4];
-    static const int L[4][4];
-    static const int O[4][4];
-    static const int S[4][4];
-    static const int T[4][4];
-    static const int Z[4][4];
-public:   
-
+    int tetromino[4][4];
+public:
     enum TetrominoID {
-    I = 0,
-    J = 1,
-    L = 2,
-    O = 3,
-    S = 4,
-    T = 5,
-    Z = 6,
-};
+        I = 0,
+        J = 1,
+        L = 2,
+        O = 3,
+        S = 4,
+        T = 5,
+        Z = 6,
+    };
 
-    int random(); 
-    int randomother();  //genera un numero da 0 a 3 per determinare con che rotazione buttare il tetramino iniziale
-    //le funzioni sotto servono a ruorate, in input c'è ora una matrice 4x4 generica, poi dovra essere messa quella che viene scelta randomly
+    Tetromino(TetrominoID id);
+
+    int random();
+    int randomother();
     void rotateRight(int tetramino[4][4]);
     void moveLeft(int tetramino[4][4]);
     void moveRight(int tetramino[4][4]);
- 
+    void loadTetromino(TetrominoID id);
 
+static Tetromino getRandomTetromino();  
+    void applyRandomRotations();  
 
 };
 
