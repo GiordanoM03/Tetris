@@ -4,6 +4,8 @@
 #include <cstring>
 #include <fstream>
 #include <ncurses.h>
+#include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -19,6 +21,28 @@ void print_file(WINDOW* win, string path){
         }
     }
     
+    in_file.close();
+}
+
+void read_csv(string path) {
+    fstream in_file;
+    in_file.open(path);
+    
+    vector<string> row;
+    string line, word, temp;
+
+    while (!in_file.eof()) {
+        row.clear();
+
+        getline(in_file, line);
+
+        stringstream s(line);
+
+        while (getline(s, word, ','))
+            row.push_back(word);
+
+    }    
+
     in_file.close();
 }
 
