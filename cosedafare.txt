@@ -9,3 +9,60 @@ FUNZIONI CHE SERVONO:
 - (!)da vedere come mettere il campo di gioco centrale nello schermo e che il tetramino che viene buttato sia centrale nel campo. 
 
 non me ne vengono in mente altre
+
+
+
+### Funzioni della classe Tetromino
+
+1. Tetromino(TetrominoID id)
+   - Costruttore della classe. Inizializza la matrice del tetromino a zero e carica il tetromino specificato dall'ID.
+2. void loadTetromino(TetrominoID id)
+   - Carica la forma del tetromino da un file basato sull'ID fornito.
+3. int randomother()
+   - Restituisce un numero casuale tra 0 e 3.
+4. void rotateRight()
+   - Ruota il tetromino di 90 gradi in senso orario.
+5. void moveLeft()
+   - Sposta il tetromino di una posizione a sinistra se possibile.
+6. void moveRight()
+   - Sposta il tetromino di una posizione a destra se possibile.
+7. static Tetromino getRandomTetromino()
+   - Genera e restituisce un tetromino con un ID casuale.
+8. void applyRandomRotations()
+   - Applica un numero casuale di rotazioni al tetromino.
+9. bool canMoveLeft(const Grid& grid, int startRow, int startCol) const
+   - Verifica se il tetromino può essere spostato a sinistra senza collisioni.
+10. bool canMoveRight(const Grid& grid, int startRow, int startCol) const
+    - Verifica se il tetromino può essere spostato a destra senza collisioni.
+
+### Funzioni della classe Grid
+
+1. Grid()
+   - Costruttore della classe. Inizializza la griglia chiamando la funzione clear().
+2. void clear()
+   - Pulisce la griglia impostando tutti i valori a zero.
+3. void set(int row, int col, int value)
+   - Imposta un valore specifico in una posizione specifica della griglia.
+4. int get(int row, int col) const
+   - Restituisce il valore in una posizione specifica della griglia.
+5. bool isrowfull(int riga) const
+   - Verifica se una riga è completamente piena.
+6. void removerow(int riga)
+   - Rimuove una riga piena e sposta tutte le righe sopra di essa verso il basso.
+7. void shiftdown(int riga)
+   - Sposta tutte le righe sopra la riga specificata verso il basso.
+8. void print() const
+   - Stampa la griglia sulla console.
+9. static bool gameOver(int grid[21][10])
+   - Verifica se la partita è finita controllando se ci sono blocchi nella riga superiore.
+10. bool canPlaceTetromino(const int tetromino[4][4], int startRow, int startCol) const
+    - Verifica se un tetromino può essere posizionato in una specifica posizione della griglia senza collisioni.
+11. void clearFullRows()
+    - Pulisce tutte le righe piene nella griglia.
+12. bool isCellOccupied(int row, int col) const
+    - Verifica se una cella specifica nella griglia è occupata.
+13. bool moveTetrominoLeft(Tetromino& tetromino, int& startRow, int& startCol)
+    - Sposta il tetromino a sinistra se possibile, aggiornando la posizione iniziale.
+14. bool moveTetrominoRight(Tetromino& tetromino, int& startRow, int& startCol)
+    - Sposta il tetromino a destra se possibile, aggiornando la posizione iniziale.
+

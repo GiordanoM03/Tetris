@@ -7,20 +7,20 @@ Grid::Grid() {
 
 void Grid::clear() {
     for (int i = 0; i < righe; ++i) {
-        for (int j = 0; j < colonne; ++j) {      //pulisce la grid mettendo tutto a 0
+        for (int j = 0; j < colonne; ++j) {
             grid[i][j] = 0;
         }
     }
 }
 
 void Grid::set(int row, int col, int value) {
-    if (row >= 0 && row < righe && col >= 0 && col < colonne) {   //serve per mettere un value in una posizione specifica della matrice grid
+    if (row >= 0 && row < righe && col >= 0 && col < colonne) {
         grid[row][col] = value;
     }
 }
 
 int Grid::get(int row, int col) const {
-    if (row >= 0 && row < righe && col >= 0 && col < colonne) {   //serve per determinare che value c'è nella posizione rowxcolumn
+    if (row >= 0 && row < righe && col >= 0 && col < colonne) {
         return grid[row][col];
     }
     return -1;
@@ -58,7 +58,6 @@ void Grid::shiftdown(int riga) {
 }
 
 void Grid::print() const {
-   
     for (int i = 0; i < colonne + 2; ++i) {
         std::cout << "#";
     }
@@ -66,7 +65,7 @@ void Grid::print() const {
 
     for (int riga = 0; riga < righe; ++riga) {
         std::cout << "#";
-        for (int colonna = 0; colonna < colonne; ++colonna) {     //da capire se funge
+        for (int colonna = 0; colonna < colonne; ++colonna) {
             if (grid[riga][colonna] == 0) {
                 std::cout << " "; 
             } else {
@@ -82,12 +81,41 @@ void Grid::print() const {
     std::cout << std::endl;
 }
 
-
 bool Grid::gameOver(int grid[21][10]) {
     for (int col = 0; col < 10; ++col) {
-        if (grid[20][col] != 0) {
+        if (grid[0][col] != 0) {
             return true;
         }
     }
     return false;
+}
+
+bool Grid::canPlaceTetromino(const int tetromino[4][4], int startRow, int startCol) const {
+    for (int row = 0; row < 4; ++row) {
+        for (int col = 0; col < 4; ++col) {
+            if (tetromino[row][col] != 0) {
+                int newRow = startRow + row;
+                int newCol = startCol + col;
+                if (newRow < 0 || newRow >= righe || newCol < 0 || newCol >= colonne || grid[newRow][newCol] != 0) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+void Grid::clearFullRows() {
+    for (int row = 0; row < righe; ++row) {
+        if (isrowfull(row)) {
+            removerow(row);
+        }
+    }
+}
+
+bool Grid::isCellOccupied(int row, int col) const {
+    if (row >= 0 && row < righe && col >= 0 && col < colonne) {
+        return grid[row][col] != 0;
+    }
+    return true; 
 }

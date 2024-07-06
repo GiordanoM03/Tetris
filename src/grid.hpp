@@ -16,7 +16,13 @@ private:
     void shiftdown(int riga);
     void print() const;
     static bool gameOver(int grid[21][10]);
-
+    bool canPlaceTetromino(const int tetromino[4][4], int startRow, int startCol) const;
+    void clearFullRows();
+     bool isCellOccupied(int row, int col) const;
+private:
+    static const int righe = 20;  
+    static const int colonne = 10; 
+    int grid[righe][colonne];  
 };
 
 #endif
