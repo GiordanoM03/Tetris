@@ -1,9 +1,11 @@
 FUNZIONI CHE SERVONO:
-- una che spinga giu i tetramini (la gravità per intenderci)
+- una che spinga giu i tetramini (la gravità per intenderci)  --> ho fatto la funzione per spostare il tetramino in basso di uno,
+  quindi a ogni tick di gioco viene invocata e se c'è spazio sotto si sposta. 
 - una che sceglie il tetramino iniziale
+--> fatta, sceglie prima a random il tetramino e poi gli applica in modo random una rotazione
 
 - parte grafica generale con la grid + menu iniziale (+ elenco comandi per gioco, punti, ...)
-- funzione gameover
+- funzione gameover    --> fatta
 
 
 - (!)da vedere come mettere il campo di gioco centrale nello schermo e che il tetramino che viene buttato sia centrale nel campo. 
@@ -12,7 +14,7 @@ non me ne vengono in mente altre
 
 
 
-### Funzioni della classe Tetromino
+Funzioni della classe Tetromino
 
 1. Tetromino(TetrominoID id)
    - Costruttore della classe. Inizializza la matrice del tetromino a zero e carica il tetromino specificato dall'ID.
@@ -35,7 +37,7 @@ non me ne vengono in mente altre
 10. bool canMoveRight(const Grid& grid, int startRow, int startCol) const
     - Verifica se il tetromino può essere spostato a destra senza collisioni.
 
-### Funzioni della classe Grid
+ Funzioni della classe Grid
 
 1. Grid()
    - Costruttore della classe. Inizializza la griglia chiamando la funzione clear().
