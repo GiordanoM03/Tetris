@@ -1,7 +1,9 @@
 #ifndef TETROMINO_HPP
 #define TETROMINO_HPP
-#include <cstdlib>  
-#include <ctime>    
+#include <cstdlib>
+#include <ctime>
+
+class Grid; // Forward declaration
 
 namespace Tetris {
 
@@ -20,6 +22,10 @@ public:
     };
 
     Tetromino(TetrominoID id);
+    Tetromino(); // Default constructor
+    Tetromino(const Tetromino& other); // Copy constructor
+    Tetromino& operator=(const Tetromino& other); // Copy assignment operator
+
     void loadTetromino(TetrominoID id);
     int randomother();
     void rotateRight();
@@ -29,8 +35,13 @@ public:
     bool canMoveRight(const Grid& grid, int startRow, int startCol) const;
     static Tetromino getRandomTetromino();
     void applyRandomRotations();
+    const int (&getShape() const)[4][4]; // Getter method for shape
 };
 
 } 
 
-#endif 
+#endif // TETROMINO_HPP
+
+
+
+

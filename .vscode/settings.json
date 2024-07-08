@@ -1,9 +1,10 @@
 {
-    "C_Cpp.default.compilerPath": "cl.exe",
-    "files.associations": {
-        "iostream": "cpp",
-        "iosfwd": "cpp",
-        "fstream": "cpp",
-        "cstdio": "cpp"
-    }
+        "C_Cpp.default.compilerPath": "cl.exe",
+        "files.associations": {
+            "iostream": "cpp",
+            "iosfwd": "cpp",
+            "fstream": "cpp",
+            "cstdio": "cpp",
+            "thread": "cpp"
+        }
 }

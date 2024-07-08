@@ -1,8 +1,32 @@
 #include "grid.hpp"
 #include <iostream>
 
-Grid::Grid() {
-    clear(); 
+Grid::Grid(int rows, int cols)
+    : righe(rows), colonne(cols) {
+    clear();
+}
+
+Grid::Grid(const Grid& other) {
+    righe = other.righe;
+    colonne = other.colonne;
+    for (int i = 0; i < righe; ++i) {
+        for (int j = 0; j < colonne; ++j) {
+            grid[i][j] = other.grid[i][j];
+        }
+    }
+}
+
+Grid& Grid::operator=(const Grid& other) {
+    if (this != &other) {
+        righe = other.righe;
+        colonne = other.colonne;
+        for (int i = 0; i < righe; ++i) {
+            for (int j = 0; j < colonne; ++j) {
+                grid[i][j] = other.grid[i][j];
+            }
+        }
+    }
+    return *this;
 }
 
 void Grid::clear() {
@@ -26,34 +50,34 @@ int Grid::get(int row, int col) const {
     return -1;
 }
 
-bool Grid::isrowfull(int riga) const {
-    for (int colonna = 0; colonna < colonne; ++colonna) {
-        if (grid[riga][colonna] == 0) {
-            return false; 
+bool Grid::isRowFull(int row) const {
+    for (int col = 0; col < colonne; ++col) {
+        if (grid[row][col] == 0) {
+            return false;
         }
     }
-    return true; 
+    return true;
 }
 
-void Grid::removerow(int riga) {
-    for (int r = riga; r > 0; --r) {
-        for (int colonna = 0; colonna < colonne; ++colonna) {
-            grid[r][colonna] = grid[r - 1][colonna]; 
+void Grid::removeRow(int row) {
+    for (int r = row; r > 0; --r) {
+        for (int col = 0; col < colonne; ++col) {
+            grid[r][col] = grid[r - 1][col];
         }
     }
-    for (int colonna = 0; colonna < colonne; ++colonna) {
-        grid[0][colonna] = 0; 
+    for (int col = 0; col < colonne; ++col) {
+        grid[0][col] = 0;
     }
 }
 
-void Grid::shiftdown(int riga) {
-    for (int r = riga; r > 0; --r) {
-        for (int colonna = 0; colonna < colonne; ++colonna) {
-            grid[r][colonna] = grid[r - 1][colonna]; 
+void Grid::shiftDown(int row) {
+    for (int r = row; r > 0; --r) {
+        for (int col = 0; col < colonne; ++col) {
+            grid[r][col] = grid[r - 1][col];
         }
     }
-    for (int colonna = 0; colonna < colonne; ++colonna) {
-        grid[0][colonna] = 0; 
+    for (int col = 0; col < colonne; ++col) {
+        grid[0][col] = 0;
     }
 }
 
@@ -63,16 +87,16 @@ void Grid::print() const {
     }
     std::cout << std::endl;
 
-    for (int riga = 0; riga < righe; ++riga) {
+    for (int row = 0; row < righe; ++row) {
         std::cout << "#";
-        for (int colonna = 0; colonna < colonne; ++colonna) {
-            if (grid[riga][colonna] == 0) {
-                std::cout << " "; 
+        for (int col = 0; col < colonne; ++col) {
+            if (grid[row][col] == 0) {
+                std::cout << " ";
             } else {
-                std::cout << grid[riga][colonna];
+                std::cout << grid[row][col];
             }
         }
-        std::cout << "#" << std::endl; 
+        std::cout << "#" << std::endl;
     }
 
     for (int i = 0; i < colonne + 2; ++i) {
@@ -81,8 +105,8 @@ void Grid::print() const {
     std::cout << std::endl;
 }
 
-bool Grid::gameOver(int grid[21][10]) {
-    for (int col = 0; col < 10; ++col) {
+bool Grid::gameOver() const {
+    for (int col = 0; col < colonne; ++col) {
         if (grid[0][col] != 0) {
             return true;
         }
@@ -107,8 +131,8 @@ bool Grid::canPlaceTetromino(const int tetromino[4][4], int startRow, int startC
 
 void Grid::clearFullRows() {
     for (int row = 0; row < righe; ++row) {
-        if (isrowfull(row)) {
-            removerow(row);
+        if (isRowFull(row)) {
+            removeRow(row);
         }
     }
 }
@@ -117,5 +141,21 @@ bool Grid::isCellOccupied(int row, int col) const {
     if (row >= 0 && row < righe && col >= 0 && col < colonne) {
         return grid[row][col] != 0;
     }
-    return true; 
+    return true;
 }
+
+void Grid::placeTetromino(Tetris::Tetromino& tetromino, int startRow, int startCol) {
+    const int (&shape)[4][4] = tetromino.getShape();
+    for (int row = 0; row < 4; ++row) {
+        for (int col = 0; col < 4; ++col) {
+            if (shape[row][col] != 0) {
+                set(startRow + row, startCol + col, shape[row][col]);
+            }
+        }
+    }
+}
+
+
+
+
+

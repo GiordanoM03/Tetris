@@ -1,7 +1,7 @@
 #include "tetromino.hpp"
 #include "grid.hpp"
 #include <iostream>
-#include <cstdio>  
+#include <cstdio>
 
 #define TETRAMINI_DIR "Tetramini/"
 
@@ -14,6 +14,33 @@ Tetromino::Tetromino(TetrominoID id) {
         }
     }
     loadTetromino(id);
+}
+
+Tetromino::Tetromino() {
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            tetromino[i][j] = 0;
+        }
+    }
+}
+
+Tetromino::Tetromino(const Tetromino& other) {
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            tetromino[i][j] = other.tetromino[i][j];
+        }
+    }
+}
+
+Tetromino& Tetromino::operator=(const Tetromino& other) {
+    if (this != &other) {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                tetromino[i][j] = other.tetromino[i][j];
+            }
+        }
+    }
+    return *this;
 }
 
 void Tetromino::loadTetromino(TetrominoID id) {
@@ -31,7 +58,7 @@ void Tetromino::loadTetromino(TetrominoID id) {
 
     FILE* file = fopen(filename, "r");
     if (!file) {
-        return;  
+        return;
     }
 
     char line[5];
@@ -144,7 +171,7 @@ bool Tetromino::canMoveRight(const Grid& grid, int startRow, int startCol) const
         for (int col = 0; col < 4; ++col) {
             if (tetromino[row][col] != 0) {
                 int newCol = startCol + col + 1;
-                if (newCol >= 20 || grid.isCellOccupied(startRow + row, newCol)) {
+                if (newCol >= grid.getColCount() || grid.isCellOccupied(startRow + row, newCol)) {
                     return false;
                 }
             }
@@ -153,9 +180,9 @@ bool Tetromino::canMoveRight(const Grid& grid, int startRow, int startCol) const
     return true;
 }
 
-} 
+const int (&Tetromino::getShape() const)[4][4] {
+    return tetromino;
+}
 
-
-
-
+}  // namespace Tetris
 
