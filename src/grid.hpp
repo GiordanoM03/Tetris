@@ -7,12 +7,12 @@ class Grid {
 private:
     int righe;
     int colonne;
-    int grid[23][10];  // Fixed size array
+    int grid[23][10];  
 
 public:
     Grid(int rows = 23, int cols = 10);
-    Grid(const Grid& other); // Copy constructor
-    Grid& operator=(const Grid& other); // Copy assignment operator
+    Grid(const Grid& other); 
+    Grid& operator=(const Grid& other); 
     void clear();
     void set(int row, int col, int value);
     int get(int row, int col) const;
@@ -28,7 +28,7 @@ public:
     int getColCount() const { return colonne; }
 };
 
-#endif // GRID_HPP
+#endif 
 
 
 

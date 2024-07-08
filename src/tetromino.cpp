@@ -184,5 +184,5 @@ const int (&Tetromino::getShape() const)[4][4] {
     return tetromino;
 }
 
-}  // namespace Tetris
+}  
 

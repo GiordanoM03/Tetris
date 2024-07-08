@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
-class Grid; // Forward declaration
+class Grid; 
 
 namespace Tetris {
 
@@ -22,9 +22,9 @@ public:
     };
 
     Tetromino(TetrominoID id);
-    Tetromino(); // Default constructor
-    Tetromino(const Tetromino& other); // Copy constructor
-    Tetromino& operator=(const Tetromino& other); // Copy assignment operator
+    Tetromino(); 
+    Tetromino(const Tetromino& other); 
+    Tetromino& operator=(const Tetromino& other); 
 
     void loadTetromino(TetrominoID id);
     int randomother();
@@ -35,12 +35,12 @@ public:
     bool canMoveRight(const Grid& grid, int startRow, int startCol) const;
     static Tetromino getRandomTetromino();
     void applyRandomRotations();
-    const int (&getShape() const)[4][4]; // Getter method for shape
+    const int (&getShape() const)[4][4]; 
 };
 
 } 
 
-#endif // TETROMINO_HPP
+#endif 
 
 
 

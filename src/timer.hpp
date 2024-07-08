@@ -21,7 +21,7 @@ private:
     void gameLoop();
 };
 
-#endif // TIMER_HPP
+#endif 
 
 
 
