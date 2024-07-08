@@ -17,6 +17,7 @@ I tetramini avranno anche un colore, per evitare di confonderli quando saranno t
 
 #### Implementazione
 La prima scelta d'implementazione legata ai tetramini è quella di utilizzare dei file contenenti i "disegni" dei tetramini in formato binario, cioè avere lo 0 che indica il vuoto e 1 che indica la presenta del tetramino. Questa scelta nasce dalla necessità di trovare un modo per controllare il contatto tra i vari blocchi nella matrice di gioco.  
+Abbiamo implementato tutti e 7 i tetramini del gioco originale, e per fare in modo che ogni volta uscisse un tetramino diverso, ci siamo serviti di 2 funzioni random, una che sceglie un numero fino a 7 e l'altra che sceglie un numero fino a 4. Il compito della prima funzione è quello di scegliere il tetramino da lanciare in gioco tra quelli disponibili, quello della seconda invece è di appliare una rotazione di 90° in senso orario per x volte, tale che x sia il numero uscito dalla funzione. In questo modo è molto probabile di avere sempre tetramini diversi. 
 L'altra scelta implementativa è legata alla grafica del gioco, dove, per avere un gioco più interessante graficamente, andiamo a cambiare l'elemento grafico. Quello che facciamo e andare a cambiare il valore 1 con la stringa "[]", così da avere dei tetramini graficamente "belli".
 
 
