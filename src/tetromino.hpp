@@ -10,7 +10,8 @@ namespace Tetris {
 class Tetromino {
 private:
     int tetromino[4][4];
-public:
+    int row;  
+    int col;  
     enum TetrominoID {
         I = 0,
         J = 1,
@@ -20,7 +21,7 @@ public:
         T = 5,
         Z = 6,
     };
-
+public:
     Tetromino(TetrominoID id);
     Tetromino(); 
     Tetromino(const Tetromino& other); 
@@ -29,8 +30,12 @@ public:
     void loadTetromino(TetrominoID id);
     int randomother();
     void rotateRight();
+    void rotateLeft();
     void moveLeft();
     void moveRight();
+    void setPosition(int newRow, int newCol);
+    int getRow() const;
+    int getCol() const;
     bool canMoveLeft(const Grid& grid, int startRow, int startCol) const;
     bool canMoveRight(const Grid& grid, int startRow, int startCol) const;
     static Tetromino getRandomTetromino();
@@ -40,7 +45,7 @@ public:
 
 } 
 
-#endif 
+#endif
 
 
 

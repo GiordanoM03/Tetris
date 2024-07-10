@@ -1,13 +1,13 @@
 #include "tetromino.hpp"
 #include "grid.hpp"
 #include <iostream>
-#include <cstdio>
+#include <cstdio>  
 
 #define TETRAMINI_DIR "Tetramini/"
 
 namespace Tetris {
 
-Tetromino::Tetromino(TetrominoID id) {
+Tetromino::Tetromino(TetrominoID id) : row(0), col(0) {
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
             tetromino[i][j] = 0;
@@ -16,20 +16,10 @@ Tetromino::Tetromino(TetrominoID id) {
     loadTetromino(id);
 }
 
-Tetromino::Tetromino() {
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            tetromino[i][j] = 0;
-        }
-    }
-}
+Tetromino::Tetromino() : row(0), col(0) {}
 
 Tetromino::Tetromino(const Tetromino& other) {
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            tetromino[i][j] = other.tetromino[i][j];
-        }
-    }
+    *this = other;
 }
 
 Tetromino& Tetromino::operator=(const Tetromino& other) {
@@ -39,6 +29,8 @@ Tetromino& Tetromino::operator=(const Tetromino& other) {
                 tetromino[i][j] = other.tetromino[i][j];
             }
         }
+        row = other.row;
+        col = other.col;
     }
     return *this;
 }
@@ -58,7 +50,7 @@ void Tetromino::loadTetromino(TetrominoID id) {
 
     FILE* file = fopen(filename, "r");
     if (!file) {
-        return;
+        return;  
     }
 
     char line[5];
@@ -95,42 +87,40 @@ void Tetromino::rotateRight() {
     }
 }
 
-void Tetromino::moveLeft() {
+void Tetromino::rotateLeft() {
+    int temp[4][4];
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
-            if (tetromino[i][j] != 0 && (j == 0 || tetromino[i][j - 1] != 0)) {
-                return;
-            }
+            temp[i][j] = tetromino[i][j];
         }
     }
 
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
-            if (tetromino[i][j] != 0) {
-                tetromino[i][j] = 0;
-                tetromino[i][j - 1] = 1;
-            }
+            tetromino[3 - j][i] = temp[i][j];
         }
     }
 }
 
-void Tetromino::moveRight() {
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            if (tetromino[i][j] != 0 && (j == 3 || tetromino[i][j + 1] != 0)) {
-                return;
-            }
-        }
-    }
+void Tetromino::moveLeft() {
+    col--;
+}
 
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 3; j >= 0; --j) {
-            if (tetromino[i][j] != 0) {
-                tetromino[i][j] = 0;
-                tetromino[i][j + 1] = 1;
-            }
-        }
-    }
+void Tetromino::moveRight() {
+    col++;
+}
+
+void Tetromino::setPosition(int newRow, int newCol) {
+    row = newRow;
+    col = newCol;
+}
+
+int Tetromino::getRow() const {
+    return row;
+}
+
+int Tetromino::getCol() const {
+    return col;
 }
 
 Tetromino Tetromino::getRandomTetromino() {
@@ -171,7 +161,7 @@ bool Tetromino::canMoveRight(const Grid& grid, int startRow, int startCol) const
         for (int col = 0; col < 4; ++col) {
             if (tetromino[row][col] != 0) {
                 int newCol = startCol + col + 1;
-                if (newCol >= grid.getColCount() || grid.isCellOccupied(startRow + row, newCol)) {
+                if (newCol >= 10 || grid.isCellOccupied(startRow + row, newCol)) {
                     return false;
                 }
             }
@@ -180,9 +170,4 @@ bool Tetromino::canMoveRight(const Grid& grid, int startRow, int startCol) const
     return true;
 }
 
-const int (&Tetromino::getShape() const)[4][4] {
-    return tetromino;
-}
-
-}  
-
+} 

@@ -19,6 +19,7 @@ private:
     bool gameRunning;
 
     void gameLoop();
+    
 };
 
 #endif 
