@@ -4,3 +4,4 @@
 * KEY UP: rotate tetramino 90° clockwise
 * KEY DOWN: rotate tetramino 90° counterclock
 * SPACE BAR: drop the tetramino
+* Any key to leave Ranking page

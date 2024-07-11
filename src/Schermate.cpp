@@ -1,7 +1,9 @@
-#ifndef SCHERMATE_HPP
-#define SCHERMATE_HPP
+//
+// Created by mael on 10/07/24.
+//
 
-#include "file.hpp"
+#include "File.cpp"
+#include "Schermate.hpp"
 
 void logo(int xmax, string logo_path){
     WINDOW* logo = newwin(8, 91, 5, (xmax/2)-46);
@@ -17,14 +19,14 @@ void comandi(int xmax, string commands_path){
     wrefresh(commands);
 }
 
-void ranking(int xmax, string ranking_path){
+void ranking(int xmax, rank_list* list, bool homescreen){
     WINDOW* ranking = newwin(9, (xmax/2)-10, 20, (xmax/2));
     refresh();
-    print_file(ranking, ranking_path);
+    print_list(ranking, list);
     wrefresh(ranking);
 }
 
-int menu(int xmax){
+int menu(int xmax) {
     WINDOW* menu = newwin(3, xmax-20, 30, 10);
     box(menu, 0, 0);
     refresh();
@@ -32,19 +34,19 @@ int menu(int xmax){
 
     keypad(menu, true);
 
-    string choices[2] = {"*Nuova Partita", "*Classifica"};
-    int choice;
+    string choices[3] = {"*Nuova Partita", "*Classifica", "*Esci"};
+    int choice = 0;
     int highlight = 0;
 
     while(choice != 10){
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (i == highlight)
                 wattron(menu, A_REVERSE);
-            mvwprintw(menu, 1, ((xmax/2)*i)+1, "%s", choices[i].c_str());
+            mvwprintw(menu, 1, ((xmax/3)*i)+1, "%s", choices[i].c_str());
             wattroff(menu, A_REVERSE);
         }
-        
+
         choice = wgetch(menu);
 
         if (choice == KEY_LEFT){
@@ -53,12 +55,10 @@ int menu(int xmax){
                 highlight = 0;
         }else if (choice == KEY_RIGHT){
             highlight++;
-            if (highlight == 2)
+            if (highlight == 3)
                 highlight = 1;
         }
     }
 
     return highlight;
 }
-
-#endif

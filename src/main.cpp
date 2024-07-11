@@ -1,35 +1,58 @@
-#include "schermate.cpp"
-#include "file.cpp"
+#include "Schermate.cpp"
 
-#define LOGO_PATH "./logo.txt"
-#define COMMANDS_PATH "./comandi.txt"
-#define RANKING_PATH "./ranking.txt"
+using namespace std;
 
+#define LOGO_PATH "../file_schermate/logo.txt"
+#define COMMANDS_PATH "../file_schermate/comandi.txt"
+#define RANKING_PATH "../file_schermate/ranking.csv"
 
-int main(){
-    int xmax, ymax;
+int main() {
+    int xmax, choice;
+    choice = 0;
 
-    //schermata iniziale
+    //Creo la lista con gli elementi della classifica
+    rank_list *list = new rank_list;
+    list = ranking_list(RANKING_PATH, list);
+
+    //avvio lo schermo
     initscr();
     noecho();
     cbreak();
-    getmaxyx(stdscr, ymax, xmax);
+    xmax = getmaxx(stdscr);
 
-    //Scritta TETRIS
-    logo(xmax, LOGO_PATH);
+    while (choice != 2) {
+        //pulisco lo schermo
+        clear();
 
-    //Comandi
-    comandi(xmax, COMMANDS_PATH);
+        //Creo la schermata iniziale
 
-    //Classifica
-    ranking(xmax, RANKING_PATH);
+        //Scritta TETRIS
+        logo(xmax, LOGO_PATH);
 
-    //menu
-    int choice = menu(xmax);
+        //Comandi
+        comandi(xmax, COMMANDS_PATH);
 
-    getch();
+        //Classifica
+        ranking(xmax, list->next);
 
-    endwin();    
+        //Menu
+        choice = menu(xmax);
+
+        if (choice == 0){
+            //apro la schermata di gioco
+        }else if (choice == 1) {
+            //Pulisco lo schermo per poter stampare tutta la classifica (almeno fino alla fine dello schermo)
+            clear();
+            printw("                   CLASSIFICA GENERALE\n");
+            print_list(stdscr, list->next, false);
+            getch();
+        }
+
+    }
+
+    write_file(RANKING_PATH, list);
+
+    endwin();
 
     return 0;
 }
