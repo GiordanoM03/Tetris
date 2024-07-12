@@ -29,9 +29,6 @@ void write_file(string path, rank_list* list){
     while (temp) {
         out_file << temp->name << ","
                  << temp->points << ","
-                 << temp->level << ","
-                 << temp->rows << ","
-                 << temp->minutes << ","
                  << temp->seconds << "\n";
 
         temp = temp->next;

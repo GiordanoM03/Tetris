@@ -26,6 +26,42 @@ void ranking(int xmax, rank_list* list, bool homescreen){
     wrefresh(ranking);
 }
 
+void game_over(int xmax, int ymax, string commands_path){
+    WINDOW* game_over = newwin(8, 91, (ymax/2)-4, (xmax-91)/2);
+    refresh();
+    print_file(game_over, commands_path);
+    wrefresh(game_over);
+}
+
+string player_name(int xmax, int ymax) {
+
+    WINDOW* in_win = newwin(1, ymax, 0, xmax);
+    WINDOW* out_win = newwin(5, ymax, 0, 0);
+
+    bool loop = true;
+
+    keypad(in_win, true);
+    box(out_win, 0, 0);
+    mvwprintw(out_win, 1, 1, "Inserisci il tuo nome\n");
+    wrefresh(out_win);
+    char ch = '\0';
+
+    string name = "";
+    
+    while (loop) {
+        ch = wgetch(in_win);
+        if (ch == '\n') {
+            loop = false;
+        } else {
+            name.push_back(ch);
+            mvwprintw(out_win, 3, 1, "%s\n", name.data());
+            wrefresh(out_win);
+        }
+    }
+
+    return name;
+}
+
 int menu(int xmax) {
     WINDOW* menu = newwin(3, xmax-20, 30, 10);
     box(menu, 0, 0);
@@ -56,7 +92,7 @@ int menu(int xmax) {
         }else if (choice == KEY_RIGHT){
             highlight++;
             if (highlight == 3)
-                highlight = 1;
+                highlight = 2;
         }
     }
 

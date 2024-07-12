@@ -13,14 +13,12 @@ using namespace std;
 struct rank_list {
     string name;
     int points;
-    int level;
-    int rows;
-    int minutes;
     int seconds;
     rank_list* next;
 };
 
 rank_list* ranking_list(string path, rank_list* list);
+rank_list* add_element(rank_list* list, string name, int points, int seconds);
 
 void print_list(WINDOW* win, rank_list* list, bool homescreen = true, int rank = 1);
 

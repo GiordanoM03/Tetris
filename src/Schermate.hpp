@@ -10,6 +10,8 @@
 void logo(int xmax, string logo_path);
 void comandi(int xmax, string commands_path);
 void ranking(int xmax, rank_list* list, bool homescreen = true);
+void game_over(int xmax, int ymax, string path);
+string palyer_name(int xmax, int ymax);
 int menu(int xmax);
 
 #endif //SCHERMATE_HPP
