@@ -1,4 +1,4 @@
-                    CLASSIFICA
+                   CLASSIFICA GENERALE
 1. Mario -> Punti: 1000 Livello: 10 Righe: 10 Tempo: 5'30''
 2. Mario -> Punti: 1000 Livello: 10 Righe: 10 Tempo: 5'30''
 3. Mario -> Punti: 1000 Livello: 10 Righe: 10 Tempo: 5'30''
@@ -17,6 +17,4 @@ typedef struct rank {
     rank* next;
 }
 
-funzione lettura file
-organizzare classe schermata e file
-funzioni grafiche per la schermata di gioco3
+funzione per: aggiornamento classifica dopo partita
