@@ -3,7 +3,7 @@
 Questo progetto implementa il classico gioco Tetris utilizzando il linguaggio di programmazione C++ e la libreria grafica ncurses. È stato realizzato come parte del corso di Programmazione (12 CFU) presso l'Università degli Studi di Bologna per l'anno accademico 2023/2024.
 
 Membri del Gruppo
-Di Vita Ivan 
+Di Vita Ivan <br>
 Giordano Mael 
 
 Descrizione del Progetto
