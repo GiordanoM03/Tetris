@@ -3,6 +3,10 @@
     "files.associations": {
         "iostream": "cpp",
         "iosfwd": "cpp",
-        "fstream": "cpp"
-    }
+        "fstream": "cpp",
+        "cstdio": "cpp",
+        "thread": "cpp",
+        "string": "cpp"
+    },
+    "C_Cpp.dimInactiveRegions": false
 }

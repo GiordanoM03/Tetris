@@ -1,41 +1,35 @@
-# TETRIS
+# TETRIS IN C++
 
-Progetto del corso di Programmazione (12 CFU) dell'anno accademico 2023/2024 presso l'Universita' degli studi di Bologna
+Questo progetto implementa il classico gioco Tetris utilizzando il linguaggio di programmazione C++ e la libreria grafica ncurses. È stato realizzato come parte del corso di Programmazione (12 CFU) presso l'Università degli Studi di Bologna per l'anno accademico 2023/2024.
 
-## Struttura Gioco
-Il gioco viene diviso in 3 sezioni:
+Membri del Gruppo <br>
+Di Vita Ivan <br>
+Giordano Mael 
 
-1. I blocchi di gioco (tetramini)
-2. La schermata di gioco
-3. La schermata iniziale
+Descrizione del Progetto <br>
+Il progetto Tetris è stato sviluppato per creare una versione giocabile del famoso gioco di puzzle Tetris. L'obiettivo principale è stato quello di implementare la logica di gioco, la gestione grafica tramite ASCII e l'interazione con l'utente.
 
-### 1. Tetramini
-#### Grafica
-I tetramini vengono rapresentati sullo schermo come un insieme di 4 "[]" che danno la forma del tetramino, mentre sui file utilizzati per rappresentare le forme viene usato il binario, dove 1 rappresenta il "[]", mentre 0 rappresenta l'assenza dell'elemento. Il perché della scelta viene spiegato nella sezione "**Implementazione**"
-I file grafici si trovano nella cartella [Tetramini](https://github.com/GiordanoM03/Tetris) presente su GitHub.  
-I tetramini avranno anche un colore, per evitare di confonderli quando saranno tutti impilati.
+Funzionalità del Gioco <br>
+Movimento dei Tetramini:  <br>
+I tetramini possono essere spostati a sinistra, a destra, possono anche essere ruotati in senso orario e antiorario. <br>
+1. sinistra: key_left
+2. destra: key_right
+3. rotazione senso orario: key_up
+4. rotazione senso antiorario: key_down
+   
+rilevamento delle Collisioni:  <br>
+Il gioco rileva le collisioni dei tetramini con i bordi della griglia e con altri tetramini, impedendogli di spostarsi in quella direzione.  <br>
+Rimozione delle Linee Complete:  <br>
+Quando una linea è completamente riempita, viene rimossa e il punteggio del giocatore viene aggiornato. <br>
+Il punteggio (Score) è calcolato nel seguente modo, in base alle righe eliminate: <br>
+1 riga aliminata: 100 pt <br>
+2 righe eliminate: 200 pt <br>
+3 righe eliminate: 300 pt <br>
+4 righe eliminate: 800 pt <br>
+più di 4 linee eliminate: 800 pt (4 linee) + 1200 pt ogni linea extra <br>
+Visualizzazione del Punteggio:  <br>
+Il punteggio corrente del giocatore e il tempo trascorso vengono visualizzati sullo schermo accanto alla griglia di gioco. <br>
+Salvataggio e Visualizzazione dei Punteggi: <br>
+I migliori punteggi (top 5) vengono salvati e possono essere visualizzati in una schermata dedicata nel menu iniziale.  <br>
 
-#### Implementazione
-La prima scelta d'implementazione legata ai tetramini è quella di utilizzare dei file contenenti i "disegni" dei tetramini in formato binario, cioè avere lo 0 che indica il vuoto e 1 che indica la presenta del tetramino. Questa scelta nasce dalla necessità di trovare un modo per controllare il contatto tra i vari blocchi nella matrice di gioco.  
-L'altra scelta implementativa è legata alla grafica del gioco, dove, per avere un gioco più interessante graficamente, andiamo a cambiare l'elemento grafico. Quello che facciamo e andare a cambiare il valore 1 con la stringa "[]", così da avere dei tetramini graficamente "belli".
 
-
-### 2. Schermata di Gioco
-#### Grafica
-La grafica della schermata di gioco è ispirata sia alla proposta della schermata presente nella presentazione delle specifiche del progetto e alla schermata del gioco Tetris.  
-Ciò significa che:  
-- La zona di gioco, sulla destra dello schermo, è delimitata da blocchi pieni (carattere 219 della tabella ASCII) o da una un insieme di caratteri ASCII più semplici.
-- Sulla sinistra dello schermo sono presenti:
-    - il livello del giocatore nel cosro della partità;
-    - il suo punteggio;
-    - la durata della partità;
-    - il blocco successivo.
-
-### 3. Schermata Iniziale
-#### Grafica
-La schermata iniziale è composta da:
-- un logo con il nome del gioco composto da caratteri ASCII;
-- un pulsante per iniziare una nuova partità;
-- un pulsante per vedere tutti i punteggi delle partite effettuate
-- il record assoluto con i dati legati alla partita;
-- un recap del funzionamento dei tasti
