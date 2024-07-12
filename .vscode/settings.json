@@ -5,6 +5,8 @@
         "iosfwd": "cpp",
         "fstream": "cpp",
         "cstdio": "cpp",
-        "thread": "cpp"
-    }
+        "thread": "cpp",
+        "string": "cpp"
+    },
+    "C_Cpp.dimInactiveRegions": false
 }
