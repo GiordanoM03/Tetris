@@ -1,7 +1,5 @@
 #include "Game.cpp"
 
-#include <iostream>
-
 #define LOGO_PATH "../file_schermate/logo.txt"
 #define COMMANDS_PATH "../file_schermate/comandi.txt"
 #define RANKING_PATH "../file_schermate/ranking.csv"
